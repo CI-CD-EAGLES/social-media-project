@@ -6,7 +6,7 @@ const Posts = sequelize.define('user', {
     written_content: DataTypes.TEXT,
     time_created: DataTypes.DATE,
     num_of_likes: DataTypes.INTEGER,
-    replies: DataTypes.TEXT,
+    replies: DataTypes.ARRAY,
 });
 
 module.exports = Posts;
