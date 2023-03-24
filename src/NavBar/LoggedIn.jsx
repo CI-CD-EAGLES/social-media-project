@@ -16,7 +16,7 @@ import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Products", "Pricing", "Blog", "About"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function LoggedIn() {
