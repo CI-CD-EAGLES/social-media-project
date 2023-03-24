@@ -14,12 +14,27 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-
-
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import { Link } from "react-router-dom";
 
 function LoggedIn() {
+  const style = {
+    textDecoration: "none",
+    color: "white",
+  };
+  
+  const home = <Link to={`/home`} style={style}>Home</Link>
+  const products = <Link to={`/products`} style={style}>Products</Link>
+  const pricing = <Link to={`/pricing`} style={style}>Pricing</Link>
+  const blog = <Link to={`/blog`} style={style}>Blog</Link>
+  const about = <Link to={`/about`} style={style}>About</Link>
+  const profile = <Link to={`/profile`} style={style}>Profile</Link>
+  const account = <Link to={`/account`} style={style}>Account</Link>
+  const dashboard = <Link to={`/dashboard`} style={style}>Dashboard</Link>
+  const logout = <Link to={`/logout`} style={style}>Logout</Link>
+  
+  const pages = [home, products, pricing, blog, about];
+  const settings = [home, profile, account, dashboard, logout];
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
