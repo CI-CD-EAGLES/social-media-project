@@ -2,6 +2,7 @@
   "name": "social-media-app",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -30,7 +31,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "data:import": "DEBUG=app:seeder node backend/seeder.js -import",
+    "dev": "DEBUG=app:* nodemon backend/server.js",
+    "server": "node backend/server.js"
   },
   "eslintConfig": {
     "extends": [

@@ -10,6 +10,7 @@ const {
     updatePost
 } = require('../controllers/index');
 
+
 // Get all posts
 app.get('/posts', getAllPosts);
 
