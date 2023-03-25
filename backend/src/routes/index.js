@@ -8,7 +8,8 @@ const {
     deletePostById,
     createPost,
     updatePost
-} = require('../controllers/index.js');
+} = require('../controllers/index');
+
 
 // Get all posts
 app.get('/posts', getAllPosts);
