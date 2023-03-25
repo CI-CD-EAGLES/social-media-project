@@ -6,10 +6,10 @@ const dotenv = require('dotenv');
 const path = require('path');
 const cors = require('cors');
 // DATABASE
-const sequelize = require('../src/db');
+const sequelize = require('./src/db');
 
 // IMPORT ROUTES
-const routes = require('../src/routes/index');
+const routes = require('./src/routes/index');
 
 // CHECK DB CONNECTION
 sequelize

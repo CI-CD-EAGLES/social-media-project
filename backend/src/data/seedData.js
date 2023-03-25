@@ -25,32 +25,12 @@ const posts = [
         written_content: "Example post 1",
         time_created: "2023-01-01 05:23:39",
         num_of_likes: 2,
-        replies: [
-            {
-                user_name: "Admin_Youssouf",
-                reply: "Testing replies post 1",
-            },
-            {
-                user_name: "Admin_Sergio",
-                reply: "Testing replies post 2",
-            },
-        ],
     },
     {
         user_name: "Admin_Sergio",
         written_content: "Example post 2 TESTING",
         time_created: "2023-02-01 05:23:39",
         num_of_likes: 3,
-        replies: [
-            {
-                user_name: "Admin_Shirelle",
-                reply: "Testing replies post 3",
-            },
-            {
-                user_name: "Admin_Sergio",
-                reply: "Responsing to shirelle's post testing 4",
-            },
-        ],
     }
 ];
 

@@ -1,15 +1,15 @@
 //import dependencies
 const path = require('path'); //helps us find our file easily
 const fs = require('fs').promises; //helps us get access to promises
-const { users } = require('../src/data/seedData');
-const { posts } = require('../src/data/seedData');
+const { users } = require('./src/data/seedData');
+const { posts } = require('./src/data/seedData');
 
 //import our database [x]
-const sequelize = require('../src/db');
+const sequelize = require('./src/db');
 
 //import the model that we are trying to import our data into [x]
-const Posts = require('./src/models/Post');
-const Users = require('../src/models/Users')
+const Posts = require('./src/models/Posts');
+const Users = require('./src/models/Users')
 // modules for debugging
 const debug = require('debug')('app:seeder');
 const colors = require('colors');
@@ -28,7 +28,7 @@ const populateDb = async () => {
     debug(colors.green.inverse("SUCCESS: Database has been re-populated!"));
     process.exit(1)
   } catch (error) {
-    debug(colors.red(`Error with seeding database: ${error.message}`));
+    debug(colors.red(`Error with seeding database: ${error.message} sorry`));
     process.exit(1);
   }
 };

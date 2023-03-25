@@ -1,9 +1,8 @@
 const Posts = require('../models/Users');
 const debug = require('debug')('app:controllers');
-const {validationResults} = require('express-validator');
+const {validationResult} = require('express-validator');
 
-
-exports.getAllPost = async (req, res) => {
+exports.getAllPosts = async (req, res) => {
     try {
         // GET ALL POSTS
         const posts = await Posts.findAll();
@@ -80,6 +79,42 @@ exports.deletePostById = async (req, res) => {
         });
     }
 };
+
+/**
+ * @desc Create a single post
+ * @route POST /api/post/create
+ * @access Private
+ */
+exports.createPost = async (req, res) => {
+    const errors = validationResult(req);
+
+    // CHECK FOR EMPTY ERROR ARRAY
+    if(!errors.isEmpty()) {
+        res.status(400).json({
+            success: false,
+            error: errors.array()
+        })
+    } else {
+        try {
+            // GRAB BODY OF REQ
+            const newPost = req.body;
+            // USE CREATE FUNCTION IN SEQUELIZE TO CREATE POST
+            const createdPost = await Posts.create(newPost);
+            res.status(200).json({
+                createdPost,
+                success: true,
+                message: `Post created succesfully!`
+            });
+        } catch (error) {
+            debug(error);
+            res.status(400).json({
+                success: false,
+                message: `Post not created - ERROR: ${error.message}`
+            });
+        }
+    }  
+};
+
 
 exports.updatePost = async (req, res) => {
     const errors = validationResult(req);
