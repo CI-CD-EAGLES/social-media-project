@@ -1,20 +1,20 @@
-const Posts = require('../models/Users');
+const Users = require("../models/Users");
 const debug = require('debug')('app:controllers');
 const {validationResult} = require('express-validator');
 
-exports.getAllPosts = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
     try {
         // GET ALL POSTS
-        const posts = await Posts.findAll();
+        const users = await Users.findAll();
 
-        if(!posts){
+        if(!users){
             res.status(400).json({
                 success: false,
-                message: 'no posts found',
+                message: 'no users found',
             });
         } else {
             res.status(200).json({
-                posts,
+                users,
                 success: true,
                 message: "All posts returned",
             })
@@ -28,54 +28,56 @@ exports.getAllPosts = async (req, res) => {
     }
 }
 
-exports.getPostByUsername = async (req, res) => {
-    const postUserName = req.params.user_name;
+exports.getUserByUsername = async (req, res) => {
+    const userUserName = req.params.user_name;
 
     try {
-        const post = await Posts.findOne({
-            where: { user_name: postUserName }
+        const user = await Users.findOne({
+            where: { user_name: userUserName }
         });
 
         // CHECK IF POST ID IS VALID OR NOT
-        if(!post) {
+        if(!user) {
             res.status(400).json({
                 success: false,
-                message: `Post not found - Check post id!`
+                message: `User not found - Check spelling!`
             })
         } else {
             res.status(200).json({
-                post,
+                user,
                 success: true,
-                message: `Post found succesfully!`
+                message: `User found succesfully!`
             })
         }
     } catch (error) {
         debug(error);
         res.status(400).json({
             success: false,
-            message: `Post not found - ERROR: ${error.message}`
+            message: `User not found - ERROR: ${error.message}`
         })
     }
 };
 
-exports.deletePostById = async (req, res) => {
-    const postId = req.params.id;
+exports.deleteUserByUsername = async (req, res) => {
+    const user = req.params.user_name;
 
     try {
-        const postToDelete = await Posts.findByPk(postId);
-        const deletedPost = await postToDelete.destroy();
+        const userToDelete = await Users.findOne({
+            where: { user_name: user }
+    });
+        const deletedUser = await userToDelete.destroy();
 
         // DELETE POST
         res.status(200).json({
-            deletedPost,
+            deletedUser,
             success: true,
-            message: `Post deleted succesfully!`
+            message: `User deleted succesfully!`
         });
     } catch (error) {
         debug('ERROR: ', error);
         res.status(400).json({
             success: false,
-            message: `Unable to delete post - ERROR: ${error.message}`
+            message: `Unable to delete user - ERROR: ${error.message}`
         });
     }
 };
@@ -85,7 +87,7 @@ exports.deletePostById = async (req, res) => {
  * @route POST /api/post/create
  * @access Private
  */
-exports.createPost = async (req, res) => {
+exports.createUser = async (req, res) => {
     const errors = validationResult(req);
 
     // CHECK FOR EMPTY ERROR ARRAY
@@ -97,26 +99,26 @@ exports.createPost = async (req, res) => {
     } else {
         try {
             // GRAB BODY OF REQ
-            const newPost = req.body;
-            // USE CREATE FUNCTION IN SEQUELIZE TO CREATE POST
-            const createdPost = await Posts.create(newPost);
+            const newUser = req.body;
+            // USE CREATE FUNCTION IN SEQUELIZE TO CREATE USER
+            const createdUser = await Users.create(newUser);
             res.status(200).json({
-                createdPost,
+                createdUser,
                 success: true,
-                message: `Post created succesfully!`
+                message: `User created succesfully!`
             });
         } catch (error) {
             debug(error);
             res.status(400).json({
                 success: false,
-                message: `Post not created - ERROR: ${error.message}`
+                message: `User not created - ERROR: ${error.message}`
             });
         }
     }  
 };
 
 
-exports.updatePost = async (req, res) => {
+exports.updateUser = async (req, res) => {
     const errors = validationResult(req);
 
     if(!errors.isEmpty()) {
@@ -125,25 +127,27 @@ exports.updatePost = async (req, res) => {
             error: errors.array()
         });
     } else {
-        const postId = req.params.id;
+        const user = req.params.user_name;
         const updates = req.body;
 
         try {
             // FIND POST BY ID
-            const postToUpdate = await Posts.findByPk(postId);
+            const userToUpdate = await Users.findOne({
+                where: { user_name: user}
+            });
             // UPDATE POST WITH THE UPDATESS ENTERED BY USER
-            const updatedPost = await postToUpdate.update(updates);
+            const updatedUser = await userToUpdate.update(updates);
 
             res.status(200).json({
-                updatedPost,
+                updatedUser,
                 success: true,
-                message: `Post updated succesfully!`
+                message: `User updated succesfully!`
             });
         } catch (error) {
             debug(error);
             res.status(400).json({
                 success: false,
-                message: `Unable to update post - ERROR: ${error.message}`
+                message: `Unable to update User - ERROR: ${error.message}`
             });
         }    
     }
