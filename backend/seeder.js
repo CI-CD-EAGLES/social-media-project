@@ -8,8 +8,8 @@ const { posts } = require('./src/data/seedData');
 const sequelize = require('./src/db');
 
 //import the model that we are trying to import our data into [x]
-const Posts = require('./src/models/Posts');
-const Users = require('./src/models/Users')
+const Posts = require('./src/models/Models').Posts;
+const Users = require('./src/models/Models').Users;
 // modules for debugging
 const debug = require('debug')('app:seeder');
 const colors = require('colors');

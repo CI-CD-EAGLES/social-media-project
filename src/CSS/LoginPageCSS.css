@@ -1,0 +1,10 @@
+.LoginPage_container {
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.blog_link{
+    color: white;
+    text-decoration: none;
+}
