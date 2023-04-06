@@ -1,4 +1,4 @@
-const Users = require("../models/Users");
+const Users = require("../models/Models").Users;
 const debug = require('debug')('app:controllers');
 const {validationResult} = require('express-validator');
 

@@ -11,13 +11,10 @@ function Home() {
     const response = await fetch(`http://localhost:8000/api/posts`); 
     const data = await response.json(); 
 
-    console.log('postData: ', data.posts);
     setPosts(data.posts);
+    console.log(data.posts)
   }
 
-  const retrieveUsers = async() => {
-    const response = await fetch(``)
-  }
   useEffect(() => {
     getPostsData();
   }, [])

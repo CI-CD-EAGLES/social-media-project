@@ -13,4 +13,11 @@ const Posts = sequelize.define('post', {
     num_of_likes: DataTypes.INTEGER,
 });
 
-module.exports = Posts;
+const Users = sequelize.define('user', {
+    user_name: Sequelize.STRING,
+    password: Sequelize.STRING,
+    profile_pic: Sequelize.STRING,
+    bio: DataTypes.TEXT,
+});
+
+module.exports = {Posts, Users};

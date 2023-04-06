@@ -1,4 +1,4 @@
-import * as React from "react";
+import  React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,25 +14,29 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useContext } from 'react';
+import { useAuth } from '../utils/UserContext'; 
 
-function LoggedIn() {
+function LoggedIn({children}) {
   const style = {
     textDecoration: "none",
     color: "white",
   };
   
+  const { isLoggedIn, authUser } = useAuth();
+
   const home = <Link to={`/home`} style={style}>Home</Link>
   const products = <Link to={`/products`} style={style}>Products</Link>
   const pricing = <Link to={`/pricing`} style={style}>Pricing</Link>
-  const blog = <Link to={`/blog`} style={style}>Blog</Link>
+  const postcard = <Link to={`/postcard`} style={style}>Postcard</Link>
   const about = <Link to={`/about`} style={style}>About</Link>
   const profile = <Link to={`/profile`} style={style}>Profile</Link>
   const account = <Link to={`/account`} style={style}>Account</Link>
   const dashboard = <Link to={`/dashboard`} style={style}>Dashboard</Link>
   const logout = <Link to={`/logout`} style={style}>Logout</Link>
   
-  const pages = [home, products, pricing, blog, about];
+  const pages = [home, postcard, about];
   const settings = [home, profile, account, dashboard, logout];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -53,16 +57,33 @@ function LoggedIn() {
     setAnchorElUser(null);
   };
 
-  return (
+  const [userData, setUserData] = useState('');
+
+    const getUserData = async () => {
+        const res = await fetch(`http://localhost:8000/api/users/${authUser}`);
+        const data = await res.json();
+        const user_data = data.user; 
+        
+        console.log("DATA:", user_data)
+
+        setUserData(user_data)
+    };
+
+    useEffect(() => {
+      getUserData();
+    }, []);
+
+  return isLoggedIn ? (
+  <>
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <Link className='blog_link' to='/blog'>
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -73,8 +94,9 @@ function LoggedIn() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            {userData.user_name}
           </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -129,7 +151,6 @@ function LoggedIn() {
               textDecoration: "none",
             }}
           >
-            LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -147,8 +168,8 @@ function LoggedIn() {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
-                  alt="Remy Sharp"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvUM58IJCIMWFuNj7-gpECa4vrL_i6gJrJ10ch7lKYVQ&usqp=CAU&ec=48600113"
+                  alt={userData.user_name}
+                  src={userData.profile_pic}
                 />
               </IconButton>
             </Tooltip>
@@ -178,6 +199,10 @@ function LoggedIn() {
         </Toolbar>
       </Container>
     </AppBar>
-  );
+    {children}
+    </>
+  ) : (
+    <Navigate to="/" replace />
+);;
 }
 export default LoggedIn;

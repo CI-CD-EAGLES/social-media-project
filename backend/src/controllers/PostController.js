@@ -1,4 +1,4 @@
-const Posts = require('../models/Posts');
+const Posts = require('../models/Models').Posts;
 const debug = require('debug')('app:controllers');
 const {validationResult} = require('express-validator');
 
