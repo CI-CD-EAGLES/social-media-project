@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useAuth } from '../utils/UserContext';
 
 export const Blog = () => {
 
   const [writtenContent, setWrittenContent] = useState('');
+  const { authUser } = useAuth();
 
   const createNewUserPost = async (newPostData) => {
     try {
@@ -18,12 +20,9 @@ export const Blog = () => {
       const data = await response.json();
 
       console.log('Post Created!', data);
-
-      // navigate(`/sneakers/${data.createdShoe.id}`)
     } catch (error) {
       console.log("ERROR CREATING POST:", error.message);
     }
-
   }
 
   // HANDLE BUTTON SUBMISSION
@@ -32,6 +31,7 @@ export const Blog = () => {
     event.preventDefault()
 
     const newUserPost = {
+      user_name: authUser,
       written_content: writtenContent
     }
     createNewUserPost(newUserPost);
