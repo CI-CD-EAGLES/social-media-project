@@ -16,6 +16,12 @@ const users = [
         password: "admin_shirelle_1",
         profile_pic: "https://ca.slack-edge.com/E46RWAPHC-U03AL0FPPS9-30f42f28a346-512",
         bio: "nicknames include Relle, Rello, and Shirelley",
+    },
+    {
+        user_name: "Admin_Galina",
+        password: "admin_galina_1",
+        profile_pic: "https://ca.slack-edge.com/E46RWAPHC-U03B1FSK3ED-6b429556dc9d-512",
+        bio: "I'm the model of the group",
     }
 ];
 
