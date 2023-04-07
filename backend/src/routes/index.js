@@ -7,7 +7,8 @@ const {
     getPostByUsername,
     deletePostById,
     createPost,
-    updatePost
+    updatePost,
+    getAllPostsWithUser
 } = require('../controllers/PostController');
 
 const {
@@ -15,7 +16,8 @@ const {
     deleteUserByUsername,
     getAllUsers,
     getUserByUsername,
-    updateUser
+    updateUser,
+    getAllUsersWithPosts
 } = require('../controllers/UserController');
 
 // Get all posts: WORKS
@@ -48,4 +50,6 @@ app.post('/users', createUser);
 // Update user: WORKS
 app.put('/users/:user_name', updateUser);
 
+// Get all POST via USER
+app.get('/users-posts', getAllPostsWithUser);
 module.exports = app;

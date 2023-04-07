@@ -14,10 +14,16 @@ const Posts = sequelize.define('post', {
 });
 
 const Users = sequelize.define('user', {
-    user_name: Sequelize.STRING,
+    user_name: {
+        primaryKey: true,
+        type: Sequelize.STRING,
+    },
     password: Sequelize.STRING,
     profile_pic: Sequelize.STRING,
     bio: DataTypes.TEXT,
 });
+
+Users.hasMany(Posts);
+Posts.belongsTo(Users);
 
 module.exports = {Posts, Users};

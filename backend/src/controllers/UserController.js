@@ -1,6 +1,7 @@
 const Users = require("../models/Models").Users;
 const debug = require('debug')('app:controllers');
 const {validationResult} = require('express-validator');
+const { Posts } = require("../models/Models").Posts;
 
 exports.getAllUsers = async (req, res) => {
     try {
@@ -40,7 +41,7 @@ exports.getUserByUsername = async (req, res) => {
         if(!user) {
             res.status(400).json({
                 success: false,
-                message: `User not found - Check spelling!`
+                message: `User not found - Check spelling`
             })
         } else {
             res.status(200).json({
