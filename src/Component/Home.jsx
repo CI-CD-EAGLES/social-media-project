@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import PostCard from "./PostCard";
+import '../CSS/PostCardCSS.css';
 
 function Home() {
 

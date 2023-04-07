@@ -9,14 +9,17 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
+import '../CSS/PostCardCSS.css'; 
+
 
 function PostCard({ postsData }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <div className='flex-container'>
+    <Card className='card' sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+          <Avatar sx={{ bgcolor: '#1976d2' }} aria-label="recipe">
+            
           </Avatar>
         }hu
         title={postsData.user_name}
@@ -36,6 +39,7 @@ function PostCard({ postsData }) {
         </IconButton>
       </CardActions>
     </Card>
+    </div>
   );
 }
 
