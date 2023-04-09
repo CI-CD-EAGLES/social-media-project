@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import PostCard from "./PostCard";
 import '../CSS/PostCardCSS.css';
+import { Blog } from "./Blog";
+import "../CSS/BlogCSS.css"
 
 function Home() {
 
@@ -22,9 +24,12 @@ function Home() {
 
   return (
     <div className="posts-container">
-      {
-        posts.length ? posts.map((post) => <PostCard postsData={post} /> ): '..loading'
-      }
+      <div className="blogHome">
+        <Blog />
+      </div>
+      {posts.length
+        ? posts.map((post) => <PostCard postsData={post} />)
+        : "..loading"}
     </div>
   );
 }

@@ -21,8 +21,12 @@ import { useAuth } from '../utils/UserContext';
 function LoggedIn({children}) {
   const style = {
     textDecoration: "none",
-    color: "white",
+    color: "black",
   };
+
+    function loggingOut() {
+      window.location.reload(false);
+    }
   
   const { isLoggedIn, authUser } = useAuth();
 
@@ -34,10 +38,10 @@ function LoggedIn({children}) {
   const profile = <Link to={`/profile`} style={style}>Profile</Link>
   const account = <Link to={`/account`} style={style}>Account</Link>
   const dashboard = <Link to={`/dashboard`} style={style}>Dashboard</Link>
-  const logout = <Link to={`/logout`} style={style}>Logout</Link>
+  const logout = <Link onClick={() => loggingOut() } style={style}>Logout</Link>
   
-  const pages = [home, postcard, about];
-  const settings = [home, profile, account, dashboard, logout];
+  const pages = [home, about];
+  const settings = [home, logout];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -78,8 +82,8 @@ function LoggedIn({children}) {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Link className='blog_link' to='/blog'>
+          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1, color: "black" }} />
+          <Link className='blog_link' to='/home'>
           <Typography
             variant="h6"
             noWrap
@@ -90,7 +94,7 @@ function LoggedIn({children}) {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "black",
               textDecoration: "none",
             }}
           >
@@ -129,7 +133,7 @@ function LoggedIn({children}) {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography color="black" textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>

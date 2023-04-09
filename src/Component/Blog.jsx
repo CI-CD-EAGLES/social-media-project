@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../utils/UserContext';
-import '../CSS/BlogCSS.css';
+// import '../CSS/BlogCSS.css';
 
 export const Blog = () => {
 
@@ -41,8 +41,8 @@ export const Blog = () => {
 
   return (
     <div>
-      <form className='form' onSubmit={handleSubmit}>
-        <input className='written_content' type='text' placeholder='Say whats on your mind...' value={writtenContent} onChange={(e) => setWrittenContent(e.target.value)}></input>
+      <form onSubmit={handleSubmit}>
+        <input type='text' placeholder='Say whats on your mind...' value={writtenContent} onChange={(e) => setWrittenContent(e.target.value)}></input>
         <button type='submit'>POST</button>
       </form>
     </div>

@@ -9,36 +9,38 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
-import '../CSS/PostCardCSS.css'; 
+import '../CSS/PostCardCSS.css';
 
 
 function PostCard({ postsData }) {
   return (
-    <div className='flex-container'>
-    <Card className='card' sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: '#1976d2' }} aria-label="recipe">
-            
-          </Avatar>
-        }hu
-        title={postsData.user_name}
-        subheader={postsData.time_created}
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {postsData.written_content}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
+    <div className="flex-container">
+      <div>
+        <Card className="card" sx={{ maxWidth: 345 }}>
+          <CardHeader
+            className="test"
+            avatar={
+              <Avatar sx={{ bgcolor: "#1976d2" }} aria-label="recipe"></Avatar>
+            }
+            hu
+            title={postsData.user_name}
+            subheader={postsData.time_created}
+          />
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              {postsData.written_content}
+            </Typography>
+          </CardContent>
+            <CardActions disableSpacing>
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon />
+              </IconButton>
+              <IconButton aria-label="share">
+                <ShareIcon />
+              </IconButton>
+            </CardActions>
+        </Card>
+      </div>
     </div>
   );
 }
