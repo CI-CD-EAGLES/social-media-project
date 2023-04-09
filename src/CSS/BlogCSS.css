@@ -1,14 +1,6 @@
-.form {
-  width: 100%;
-  height: 150px;
-  padding: 12px 20px;
-  /* margin: 8px 0; */
-  box-sizing: border-box;
-  border-radius: 4px;
+.blogHome {
   display: flex;
-
-}
-
-.submit {
-  background-color: red;
+  justify-content: center;
+  z-index: 6;
+  margin: 30px auto;
 }
